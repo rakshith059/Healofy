@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Healofy</string>
+    <string name="action_settings">Settings</string>
+    <string name="like">like</string>
+    <string name="comment">Comment</string>
+    <string name="hour">1 h</string>
+    <string name="reply">Reply</string>
+    <string name="message">Message</string>
+    <string name="healofy_text"><![CDATA[Commenting as healofy: Smart Pregnancy& Baby Care App]]></string>
+</resources>
