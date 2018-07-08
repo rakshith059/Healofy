@@ -9,6 +9,7 @@
         android:id="@+id/activity_comments_rv_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/size_8dp"
         android:layout_weight="1"
         android:orientation="vertical"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager" />

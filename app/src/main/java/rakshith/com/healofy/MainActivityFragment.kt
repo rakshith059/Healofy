@@ -22,7 +22,7 @@ class MainActivityFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        var postAdapter: HealofyPostAdapter = HealofyPostAdapter(activity?.applicationContext, createHealofyPosts())
+        var postAdapter: HealofyPostAdapter = HealofyPostAdapter(activity?.applicationContext, createHealofyPosts(), activity?.supportFragmentManager)
         fragment_main_rv_recyclerView?.adapter = postAdapter
     }
 

@@ -2,6 +2,8 @@ package rakshith.com.healofy.adapters
 
 import android.content.Context
 import android.content.Intent
+import android.support.design.widget.BottomSheetDialogFragment
+import android.support.v4.app.FragmentManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -10,19 +12,21 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import rakshith.com.healofy.R
 import rakshith.com.healofy.activities.CommentsActivity
+import rakshith.com.healofy.fragments.CommentsFragment
 import rakshith.com.healofy.models.HealofyPostsModel
 
 /**
  * Created Healofy by rakshith on 7/8/18.
  */
 
-class HealofyPostAdapter(mContext: Context?, healofyPostList: ArrayList<HealofyPostsModel>) : RecyclerView.Adapter<HealofyPostAdapter.HealofyPostViewHolder>(), View.OnClickListener {
+class HealofyPostAdapter(mContext: Context?, healofyPostList: ArrayList<HealofyPostsModel>, supportFragmentManager: FragmentManager?) : RecyclerView.Adapter<HealofyPostAdapter.HealofyPostViewHolder>(), View.OnClickListener {
     companion object {
         private var TAG: String = this.javaClass.simpleName
     }
 
     var mHealofyPostList = healofyPostList
     var mContext = mContext
+    var supportFragmentManager = supportFragmentManager
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HealofyPostViewHolder {
         var view: View = LayoutInflater.from(parent.context).inflate(R.layout.post_row, parent, false)
@@ -40,7 +44,7 @@ class HealofyPostAdapter(mContext: Context?, healofyPostList: ArrayList<HealofyP
         holder.tvPostTitle?.text = healofyModel.postTitle
 
         holder.llComment?.setOnClickListener(this)
-        holder.llComment?.setTag(position)
+        holder.llLike?.setOnClickListener(this)
     }
 
     class HealofyPostViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
@@ -52,9 +56,12 @@ class HealofyPostAdapter(mContext: Context?, healofyPostList: ArrayList<HealofyP
     }
 
     override fun onClick(v: View?) {
-        var selectedPositon = v?.getTag()
         when (v?.id) {
             R.id.post_row_ll_comment -> {
+                var bottomSheetDialogFragment: BottomSheetDialogFragment = CommentsFragment()
+                bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.getTag());
+            }
+            R.id.post_row_ll_like -> {
                 var commentsIntent = Intent(mContext, CommentsActivity::class.java)
                 mContext?.startActivity(commentsIntent)
             }
